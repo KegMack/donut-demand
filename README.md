@@ -1,1 +1,2 @@
 # donut-demand
+I extended the assignment a little bit to get some practice and added familiarity using 2d arrays. I added another constructor called DonutCorporation, which simply called on each individual store and spit out daily sales data. I hope you like my awesome artistic abilities with all the donuts my program 'draws'.   : )
