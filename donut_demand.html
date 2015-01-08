@@ -1,13 +1,22 @@
 <!DOCTYPE>
 <script> 
+  var downtownShop, 
+      capitolHillShop,
+      southLakeUnionShop,
+      wedgewoodShop,
+      ballardShop,
+      storeList,
+      donutCorp;
+
 	function DonutShop(location, numberOfHoursOpen, hourlyFootTraffic, percentEntering, donutsOrderedPerEntrant)  {
-		this.location = location;
-		this.numberOfHoursOpen = numberOfHoursOpen;
-		this.hourlyFootTraffic = hourlyFootTraffic;  //array containing min and max range
-		this.percentEntering = percentEntering;
+		this.location                = location;
+		this.numberOfHoursOpen       = numberOfHoursOpen;
+		this.hourlyFootTraffic       = hourlyFootTraffic;  //array containing min and max range
+		this.percentEntering         = percentEntering;
 		this.donutsOrderedPerEntrant = donutsOrderedPerEntrant;
+    
     this.customersPerHour = function() {
-      return(Math.floor(Math.random() * (this.hourlyFootTraffic[1] - this.hourlyFootTraffic[0]) + this.hourlyFootTraffic[0]));
+      return(Math.ceil(Math.random() * (this.hourlyFootTraffic[1] - this.hourlyFootTraffic[0]) + this.hourlyFootTraffic[0]));
     };
     this.donutsSoldPerHour = function() {
       return(this.customersPerHour() * this.percentEntering * this.donutsOrderedPerEntrant);
@@ -23,7 +32,7 @@
 
   function DonutCorporation(storeList) {
     this.storeList = storeList;
-    this.generateSalesInfo = function() {   //returns a 2-D array with list of store names and donuts sold per store that day
+    this.generateSalesInfo = function() {   //returns a jagged(?) 2-D array with list of store names and donuts sold per store that day
       console.log("Generating Sales Information for today....");
       var salesReport = [];
       for(var i=0; i<this.storeList.length; i++) {
@@ -34,9 +43,11 @@
       }
       return salesReport;
     };
-    this.listAndGraphSalesByStore = function() {  //lists total sales per store and makes a cheesy donut ( 'O' ) graph for each one
+    this.listAndGraphSalesByStore = function() {  //lists total sales per store and makes a cheesy 
+                                                  //donut ( 'O' ) graph for each one
       var dailySales = this.generateSalesInfo();
       for (var i=0; i<dailySales.length; i++) {
+        console.log("");   // For an extra line of spacing for output formatting.
         console.log("Donuts sold by " + dailySales[i][0] + ": " + dailySales[i][1]);
         var graph = "";
         for(var j=0; j<dailySales[i][1]; j++) {
@@ -47,13 +58,14 @@
     };
   };
 
-	var downtownShop = new DonutShop("Downtown", 11, [80,220], 0.10, 4);
-	var capitolHillShop = new DonutShop("Capitol Hill", 11, [5,45], 0.45, 2);
-	var southLakeUnionShop = new DonutShop("South Lake Union", 11, [180, 250], 0.05, 6);
-	var wedgewoodShop = new DonutShop("Wedgewood", 11, [20, 60], 0.20, 1.5);
-	var ballardShop = new DonutShop("Ballard", 11, [25, 175], 0.33, 1);
-  var storeList = [downtownShop, capitolHillShop, southLakeUnionShop, wedgewoodShop, ballardShop]; 
-  var donutCorp = new DonutCorporation(storeList);
+	downtownShop       = new DonutShop("Downtown",         11, [80,220],   0.10, 4  );
+	capitolHillShop    = new DonutShop("Capitol Hill",     11, [5,45],     0.45, 2  );
+	southLakeUnionShop = new DonutShop("South Lake Union", 11, [180, 250], 0.05, 6  );
+	wedgewoodShop      = new DonutShop("Wedgewood",        11, [20, 60],   0.20, 1.5);
+	ballardShop        = new DonutShop("Ballard",          11, [25, 175],  0.33, 1  );
+
+  storeList = [downtownShop, capitolHillShop, southLakeUnionShop, wedgewoodShop, ballardShop]; 
+  donutCorp = new DonutCorporation(storeList);
 
   donutCorp.listAndGraphSalesByStore();
 
