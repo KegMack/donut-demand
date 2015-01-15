@@ -1,6 +1,7 @@
 <!DOCTYPE>
-<script> 
-  var downtownShop, 
+
+<script>
+  var downtownShop,
       capitolHillShop,
       southLakeUnionShop,
       wedgewoodShop,
@@ -14,7 +15,7 @@
 		this.hourlyFootTraffic       = hourlyFootTraffic;  //array containing min and max range
 		this.percentEntering         = percentEntering;
 		this.donutsOrderedPerEntrant = donutsOrderedPerEntrant;
-    
+
     this.customersPerHour = function() {
       return(Math.ceil(Math.random() * (this.hourlyFootTraffic[1] - this.hourlyFootTraffic[0]) + this.hourlyFootTraffic[0]));
     };
@@ -43,7 +44,7 @@
       }
       return salesReport;
     };
-    this.listAndGraphSalesByStore = function() {  //lists total sales per store and makes a cheesy 
+    this.listAndGraphSalesByStore = function() {  //lists total sales per store and makes a cheesy
                                                   //donut ( 'O' ) graph for each one
       var dailySales = this.generateSalesInfo();
       for (var i=0; i<dailySales.length; i++) {
@@ -64,7 +65,7 @@
 	wedgewoodShop      = new DonutShop("Wedgewood",        11, [20, 60],   0.20, 1.5);
 	ballardShop        = new DonutShop("Ballard",          11, [25, 175],  0.33, 1  );
 
-  storeList = [downtownShop, capitolHillShop, southLakeUnionShop, wedgewoodShop, ballardShop]; 
+  storeList = [downtownShop, capitolHillShop, southLakeUnionShop, wedgewoodShop, ballardShop];
   donutCorp = new DonutCorporation(storeList);
 
   donutCorp.listAndGraphSalesByStore();
